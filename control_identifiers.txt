@@ -397,3 +397,62 @@ child_window(title="Конфигуратор АБАК ПЛК", auto_id="window",
    |    |
    |    | Static - ''    (L155, T994, R167, B1026)
    |    | ['Static26', 'Опрос остановлен.Static2']
+
+
+
+
+
+How found:	Mouse move (107,91)
+	hwnd=0x00060534 64bit class="HwndWrapper[AbakConfigurator.exe;;56604fbd-6eab-402b-9554-da4b827d2c84]" style=0x17CF0000 ex=0x401ChildId:	0
+Interfaces:	IEnumVARIANT IOleWindow
+Impl:	Remote native IAccessible (UIA-to-MSAA bridge)
+Name:	""
+Value:	[Error: hr=0x80020003 - Член группы не найден.]
+Role:	кнопка (0x2B)
+State:	фокусируемое (0x100000)
+Location:	{l:60, t:66, w:48, h:48}
+Selection:	[Error: calling getter for this property: hr=0x80020003 - Член группы не найден.]
+Description:	[Error: hr=0x80020003 - Член группы не найден.]
+Kbshortcut:	""
+DefAction:	"Нажать"
+Help:	"Подключение через Ethernet"
+HelpTopic:	""
+ChildCount:	1
+Window:	0x60534
+FirstChild:	[null]
+LastChild:	[null]
+Next:	[null]
+Previous:	[null]
+Left:	[null]
+Up:	[null]
+Right:	[null]
+Down:	[null]
+ControlType:	50000
+LocalizedControlType:	"кнопка"
+Name:	""
+AcceleratorKey:	""
+AccessKey:	""
+HasKeyboardFocus:	false
+IsKeyboardFocusable:	true
+IsEnabled:	true
+AutomationId:	""
+ClassName:	"Button"
+HelpText:	"Подключение через Ethernet"
+IsControlElement:	true
+IsContentElement:	true
+IsPassword:	false
+ItemType:	""
+IsOffscreen:	false
+Orientation:	0
+FrameworkId:	"WPF"
+IsRequiredForForm:	false
+ItemStatus:	""
+InvokePattern:	true
+Other Props:	Object has no additional properties
+Children:	"" : графика : обычный
+Ancestors:	"" : панель инструментов : фокусируемое
+	"Конфигуратор АБАК ПЛК" : окно : с фокусом ввода,фокусируемое
+	"Конфигуратор АБАК ПЛК" : окно : с фокусом ввода,изменяемого размера,перемещаемое,фокусируемое
+	"Рабочий стол 1" : клиент : фокусируемое
+	"Рабочий стол 1" : окно : фокусируемое
+	[ No Parent ]
