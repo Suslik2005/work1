@@ -456,3 +456,13 @@ Ancestors:	"" : панель инструментов : фокусируемое
 	"Рабочий стол 1" : клиент : фокусируемое
 	"Рабочий стол 1" : окно : фокусируемое
 	[ No Parent ]
+
+
+
+toolbar = window.child_window(control_type="ToolBar")
+buttons = toolbar.descendants(control_type="Button")
+
+for btn in buttons:
+    if btn.is_enabled():  # Проверяем, активна ли кнопка
+        btn.click_input()
+        break
