@@ -466,3 +466,11 @@ for btn in buttons:
     if btn.is_enabled():  # Проверяем, активна ли кнопка
         btn.click_input()
         break
+
+app_name = "Конфигуратор АБАК ПЛК"
+app = Application(backend='win32').connect(title = app_name)
+main_window = app.window(title = app_name)
+main_window.print_control_identifiers()
+HwndWrapper[AbakConfigurator.exe;;98fc74ae-19c5-4dc7-ba7f-c292adab86ea] - 'Конфигуратор АБАК ПЛК'    (L-9, T-9, R1929, B1039)
+['Конфигуратор АБАК ПЛКHwndWrapper[AbakConfigurator.exe;;98fc74ae-19c5-4dc7-ba7f-c292adab86ea]', 'Конфигуратор АБАК ПЛК', 'HwndWrapper[AbakConfigurator.exe;;98fc74ae-19c5-4dc7-ba7f-c292adab86ea]']
+child_window(title="Конфигуратор АБАК ПЛК", class_name="HwndWrapper[AbakConfigurator.exe;;98fc74ae-19c5-4dc7-ba7f-c292adab86ea]")
