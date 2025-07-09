@@ -497,15 +497,13 @@ pyautogui.moveTo(center_x, center_y)
 
 
 
-from pywinauto import Application
-from pywinauto.controls.uia_controls import ButtonWrapper
+from collections import defaultdict
 
-def find_controls_by_type(app_title, control_type, output_file):
+def find_all_control_types(app_title, output_file):
     """
-    Ищет все элементы с указанным control_type и сохраняет в файл
+    Находит все существующие control_type в окне приложения и сохраняет в файл
     
     :param app_title: Заголовок окна приложения
-    :param control_type: Искомый тип элемента (например, "Button", "Edit")
     :param output_file: Путь к выходному файлу
     """
     try:
@@ -521,42 +519,50 @@ def find_controls_by_type(app_title, control_type, output_file):
 
         window = app.window(title=app_title)
         
-        # Сохраняем полную структуру в файл
-        structure_file = output_file.replace('.txt', '_full_dump.txt')
-        window.dump_tree(structure_file)
-        print(f"Полная структура окна сохранена в: {structure_file}")
-
-        # Ищем элементы по control_type
-        elements = window.descendants(control_type=control_type)
+        # Получаем все элементы
+        all_elements = window.descendants()
+        
+        # Собираем статистику по типам элементов
+        type_stats = defaultdict(list)
+        
+        for elem in all_elements:
+            try:
+                ctrl_type = elem.element_info.control_type
+                type_stats[ctrl_type].append(elem)
+            except:
+                continue
         
         # Сохраняем результаты
         with open(output_file, 'w', encoding='utf-8') as f:
-            f.write(f"Найденные элементы с control_type = '{control_type}':\n")
-            f.write(f"Всего найдено: {len(elements)}\n\n")
+            f.write(f"Все control_type в окне '{app_title}':\n")
+            f.write(f"Всего найдено типов: {len(type_stats)}\n")
+            f.write(f"Всего элементов: {len(all_elements)}\n\n")
             
-            for i, elem in enumerate(elements, 1):
-                try:
-                    name = elem.window_text()
-                except:
-                    name = "N/A"
+            for i, (ctrl_type, elements) in enumerate(type_stats.items(), 1):
+                f.write(f"{i}. {ctrl_type} (найдено: {len(elements)})\n")
                 
-                try:
-                    auto_id = elem.automation_id()
-                except:
-                    auto_id = "N/A"
+                # Примеры элементов для каждого типа
+                for j, elem in enumerate(elements[:3], 1):  # Выводим первые 3 элемента каждого типа
+                    try:
+                        name = elem.window_text() or "N/A"
+                    except:
+                        name = "N/A"
+                    
+                    f.write(f"   Пример {j}: {name}")
+                    try:
+                        f.write(f" | AutomationId: {elem.automation_id()}")
+                    except:
+                        pass
+                    try:
+                        f.write(f" | Координаты: {elem.rectangle()}\n")
+                    except:
+                        f.write("\n")
                 
-                try:
-                    rect = elem.rectangle()
-                except:
-                    rect = "N/A"
-                
-                f.write(f"{i}. {elem.element_info}\n")
-                f.write(f"   Имя: {name}\n")
-                f.write(f"   AutomationId: {auto_id}\n")
-                f.write(f"   Координаты: {rect}\n")
-                f.write(f"   Доступные паттерны: {dir(elem)}\n\n")
+                if len(elements) > 3:
+                    f.write(f"   ... и еще {len(elements)-3} элементов\n")
+                f.write("\n")
         
-        print(f"Результаты поиска сохранены в: {output_file}")
+        print(f"Результаты сохранены в: {output_file}")
         return True
 
     except Exception as e:
@@ -566,14 +572,18 @@ def find_controls_by_type(app_title, control_type, output_file):
 # Пример использования
 if __name__ == "__main__":
     # Настройки
-    APP_TITLE = "Конфигуратор АБАК ПЛК"
-    CONTROL_TYPE = "Button"  # Можно изменить на нужный тип
-    OUTPUT_FILE = "found_controls.txt"
+    APP_TITLE = "Конфигуратор АБАК ПЛК"  # Замените на ваш заголовок окна
+    OUTPUT_FILE = "all_control_types.txt"
     
     # Запуск поиска
-    success = find_controls_by_type(APP_TITLE, CONTROL_TYPE, OUTPUT_FILE)
+    success = find_all_control_types(APP_TITLE, OUTPUT_FILE)
     
     if success:
-        print("\nОткройте файл found_controls.txt для просмотра результатов")
+        print(f"\nОткройте файл {OUTPUT_FILE} для просмотра всех типов элементов")
+        print("Формат файла:")
+        print("1. Button (найдено: 5)")
+        print("   Пример 1: OK | AutomationId: btnOK | Координаты: (100, 200, 150, 220)")
+        print("   Пример 2: Cancel | AutomationId: btnCancel | Координаты: (160, 200, 210, 220)")
+        print("   ... и еще 3 элементов\n")
     else:
         print("\nНе удалось выполнить поиск элементов")
