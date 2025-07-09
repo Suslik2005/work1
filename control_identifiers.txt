@@ -474,3 +474,19 @@ main_window.print_control_identifiers()
 HwndWrapper[AbakConfigurator.exe;;98fc74ae-19c5-4dc7-ba7f-c292adab86ea] - 'Конфигуратор АБАК ПЛК'    (L-9, T-9, R1929, B1039)
 ['Конфигуратор АБАК ПЛКHwndWrapper[AbakConfigurator.exe;;98fc74ae-19c5-4dc7-ba7f-c292adab86ea]', 'Конфигуратор АБАК ПЛК', 'HwndWrapper[AbakConfigurator.exe;;98fc74ae-19c5-4dc7-ba7f-c292adab86ea]']
 child_window(title="Конфигуратор АБАК ПЛК", class_name="HwndWrapper[AbakConfigurator.exe;;98fc74ae-19c5-4dc7-ba7f-c292adab86ea]")
+
+
+from pywinauto import Application
+
+app = Application(backend="uia").connect(title="Ваше приложение")
+window = app.window(title="Ваше приложение")
+
+# Получаем координаты кнопки
+button = window.child_window(title="OK", control_type="Button")
+rect = button.rectangle()  # (left, top, right, bottom)
+center_x = (rect.left + rect.right) // 2
+center_y = (rect.top + rect.bottom) // 2
+
+# Наведение курсора
+import pyautogui
+pyautogui.moveTo(center_x, center_y)
