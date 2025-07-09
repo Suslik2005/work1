@@ -490,3 +490,90 @@ center_y = (rect.top + rect.bottom) // 2
 # Наведение курсора
 import pyautogui
 pyautogui.moveTo(center_x, center_y)
+
+
+
+
+
+
+
+from pywinauto import Application
+from pywinauto.controls.uia_controls import ButtonWrapper
+
+def find_controls_by_type(app_title, control_type, output_file):
+    """
+    Ищет все элементы с указанным control_type и сохраняет в файл
+    
+    :param app_title: Заголовок окна приложения
+    :param control_type: Искомый тип элемента (например, "Button", "Edit")
+    :param output_file: Путь к выходному файлу
+    """
+    try:
+        # Подключаемся к приложению (пробуем оба бэкенда)
+        for backend in ['uia', 'win32']:
+            try:
+                app = Application(backend=backend).connect(title=app_title)
+                break
+            except:
+                continue
+        else:
+            raise Exception(f"Не удалось подключиться к приложению '{app_title}'")
+
+        window = app.window(title=app_title)
+        
+        # Сохраняем полную структуру в файл
+        structure_file = output_file.replace('.txt', '_full_dump.txt')
+        window.dump_tree(structure_file)
+        print(f"Полная структура окна сохранена в: {structure_file}")
+
+        # Ищем элементы по control_type
+        elements = window.descendants(control_type=control_type)
+        
+        # Сохраняем результаты
+        with open(output_file, 'w', encoding='utf-8') as f:
+            f.write(f"Найденные элементы с control_type = '{control_type}':\n")
+            f.write(f"Всего найдено: {len(elements)}\n\n")
+            
+            for i, elem in enumerate(elements, 1):
+                try:
+                    name = elem.window_text()
+                except:
+                    name = "N/A"
+                
+                try:
+                    auto_id = elem.automation_id()
+                except:
+                    auto_id = "N/A"
+                
+                try:
+                    rect = elem.rectangle()
+                except:
+                    rect = "N/A"
+                
+                f.write(f"{i}. {elem.element_info}\n")
+                f.write(f"   Имя: {name}\n")
+                f.write(f"   AutomationId: {auto_id}\n")
+                f.write(f"   Координаты: {rect}\n")
+                f.write(f"   Доступные паттерны: {dir(elem)}\n\n")
+        
+        print(f"Результаты поиска сохранены в: {output_file}")
+        return True
+
+    except Exception as e:
+        print(f"Ошибка: {str(e)}")
+        return False
+
+# Пример использования
+if __name__ == "__main__":
+    # Настройки
+    APP_TITLE = "Конфигуратор АБАК ПЛК"
+    CONTROL_TYPE = "Button"  # Можно изменить на нужный тип
+    OUTPUT_FILE = "found_controls.txt"
+    
+    # Запуск поиска
+    success = find_controls_by_type(APP_TITLE, CONTROL_TYPE, OUTPUT_FILE)
+    
+    if success:
+        print("\nОткройте файл found_controls.txt для просмотра результатов")
+    else:
+        print("\nНе удалось выполнить поиск элементов")
