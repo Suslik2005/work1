@@ -601,3 +601,98 @@ def get_child_windows(parent):
         return True
     win32gui.EnumChildWindows(parent, callback, None)
     return children
+
+
+
+
+
+import win32gui
+import win32con
+import win32api
+import time
+
+def find_ok_button(parent_hwnd=None):
+    """Находит кнопку OK в диалоговом окне"""
+    # Если не указано родительское окно, ищем среди всех окон
+    if parent_hwnd is None:
+        parent_hwnd = 0
+    
+    # Ищем кнопку по классу "Button" и тексту "OK"
+    ok_button = win32gui.FindWindowEx(parent_hwnd, None, "Button", "OK")
+    
+    # Альтернативный вариант - поиск по ID (1 обычно для OK)
+    if not ok_button and parent_hwnd:
+        ok_button = win32gui.GetDlgItem(parent_hwnd, 1)
+    
+    return ok_button
+
+def get_child_windows(parent_hwnd):
+    """Получает все дочерние окна"""
+    children = []
+    
+    def callback(hwnd, param):
+        children.append(hwnd)
+        return True
+    
+    win32gui.EnumChildWindows(parent_hwnd, callback, None)
+    return children
+
+def click_button(hwnd):
+    """Имитирует клик по кнопке"""
+    # Получаем координаты кнопки
+    rect = win32gui.GetWindowRect(hwnd)
+    x = (rect[0] + rect[2]) // 2
+    y = (rect[1] + rect[3]) // 2
+    
+    # Имитируем клик мыши
+    win32api.SetCursorPos((x, y))
+    win32api.mouse_event(win32con.MOUSEEVENTF_LEFTDOWN, x, y, 0, 0)
+    time.sleep(0.1)
+    win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP, x, y, 0, 0)
+
+def main():
+    # 1. Находим главное окно (пример для Блокнота)
+    main_hwnd = win32gui.FindWindow("Notepad", None)
+    if not main_hwnd:
+        print("Главное окно не найдено!")
+        return
+    
+    print(f"Найдено главное окно: hwnd={main_hwnd}")
+    
+    # 2. Получаем все дочерние окна
+    children = get_child_windows(main_hwnd)
+    print(f"Найдено {len(children)} дочерних окон")
+    
+    # 3. Ищем кнопку OK
+    ok_button = find_ok_button(main_hwnd)
+    
+    if not ok_button:
+        # Проверяем среди всех окон
+        def find_ok_callback(hwnd, extra):
+            if win32gui.GetWindowText(hwnd) == "OK":
+                extra.append(hwnd)
+            return True
+        
+        ok_buttons = []
+        win32gui.EnumWindows(find_ok_callback, ok_buttons)
+        if ok_buttons:
+            ok_button = ok_buttons[0]
+    
+    if ok_button:
+        print(f"Найдена кнопка OK: hwnd={ok_button}")
+        
+        # 4. Кликаем по кнопке
+        print("Пытаемся нажать кнопку...")
+        click_button(ok_button)
+        
+        # Альтернативный способ через сообщения
+        win32gui.SendMessage(ok_button, win32con.WM_LBUTTONDOWN, 0, 0)
+        time.sleep(0.1)
+        win32gui.SendMessage(ok_button, win32con.WM_LBUTTONUP, 0, 0)
+        
+        print("Кнопка OK нажата!")
+    else:
+        print("Кнопка OK не найдена")
+
+if __name__ == "__main__":
+    main()
