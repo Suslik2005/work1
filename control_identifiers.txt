@@ -587,3 +587,17 @@ if __name__ == "__main__":
         print("   ... и еще 3 элементов\n")
     else:
         print("\nНе удалось выполнить поиск элементов")
+
+
+
+# Найти кнопку "OK" в диалоговом окне
+ok_button = win32gui.FindWindowEx(hwnd, None, "Button", "OK")
+
+# Получить все дочерние окна
+def get_child_windows(parent):
+    children = []
+    def callback(hwnd, param):
+        children.append(hwnd)
+        return True
+    win32gui.EnumChildWindows(parent, callback, None)
+    return children
