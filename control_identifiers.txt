@@ -696,3 +696,53 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+from pywinauto import Application
+from pywinauto.controls.uia_controls import ButtonWrapper
+
+app = Application(backend="uia").connect(title="Ваше приложение")
+window = app.window(title="Ваше приложение")
+
+def is_element_visible(element):
+    try:
+        # Получаем координаты элемента и родительского окна
+        elem_rect = element.rectangle()
+        window_rect = window.rectangle()
+        
+        # Проверяем, полностью ли элемент в видимой области
+        return (elem_rect.top >= window_rect.top and
+                elem_rect.bottom <= window_rect.bottom and
+                elem_rect.left >= window_rect.left and
+                elem_rect.right <= window_rect.right)
+    except:
+        return False
+
+button = window.child_window(title="Нужная кнопка", control_type="Button")
+if not is_element_visible(button):
+    print("Требуется прокрутка!")
