@@ -746,3 +746,65 @@ def is_element_visible(element):
 button = window.child_window(title="Нужная кнопка", control_type="Button")
 if not is_element_visible(button):
     print("Требуется прокрутка!")
+
+
+
+
+
+
+def get_scroll_direction(element):
+    elem_rect = element.rectangle()
+    window_rect = window.rectangle()
+    
+    if elem_rect.bottom > window_rect.bottom:
+        return "down"
+    elif elem_rect.top < window_rect.top:
+        return "up"
+    elif elem_rect.right > window_rect.right:
+        return "right"
+    elif elem_rect.left < window_rect.left:
+        return "left"
+    return None
+
+direction = get_scroll_direction(button)
+if direction:
+    print(f"Требуется прокрутка в направлении: {direction}")
+
+
+
+
+
+
+
+
+
+
+
+
+def scroll_to_element(element):
+    scrollbar = window.child_window(control_type="ScrollBar")
+    
+    if not scrollbar.exists():
+        print("ScrollBar не найден!")
+        return False
+    
+    scroll = scrollbar.iface_scroll
+    direction = get_scroll_direction(element)
+    
+    while direction and not is_element_visible(element):
+        if direction == "down":
+            scroll.Scroll(ScrollAmount.LargeIncrement)
+        elif direction == "up":
+            scroll.Scroll(ScrollAmount.LargeDecrement)
+        
+        # Обновляем направление после прокрутки
+        direction = get_scroll_direction(element)
+        time.sleep(0.3)
+    
+    return is_element_visible(element)
+
+# Использование
+if scroll_to_element(button):
+    button.click()
+else:
+    print("Не удалось прокрутить к элементу")
