@@ -1,0 +1,127 @@
+Все control_type в окне 'Конфигуратор АБАК ПЛК':
+Всего найдено типов: 25
+Всего элементов: 836
+
+1. TitleBar (найдено: 1)
+   Пример 1: N/A | AutomationId:  | Координаты: (L20, T-6, R1920, B29)
+
+2. MenuBar (найдено: 1)
+   Пример 1: Система | AutomationId: MenuBar | Координаты: (L0, T0, R28, B28)
+
+3. MenuItem (найдено: 7)
+   Пример 1: Система | AutomationId:  | Координаты: (L0, T0, R28, B28)
+   Пример 2: Файл | AutomationId:  | Координаты: (L0, T29, R50, B64)
+   Пример 3: Учетная запись | AutomationId: AccountMenu | Координаты: (L50, T29, R170, B64)
+   ... и еще 4 элементов
+
+4. Button (найдено: 143)
+   Пример 1: Свернуть | AutomationId:  | Координаты: (L1740, T9, R1800, B28)
+   Пример 2: Восстановить | AutomationId:  | Координаты: (L1800, T9, R1859, B28)
+   Пример 3: Закрыть | AutomationId:  | Координаты: (L1859, T9, R1929, B28)
+   ... и еще 140 элементов
+
+5. Menu (найдено: 1)
+   Пример 1: N/A | AutomationId: menu1 | Координаты: (L0, T29, R1920, B64)
+
+6. Text (найдено: 308)
+   Пример 1: Файл | AutomationId:  | Координаты: (L8, T37, R43, B56)
+   Пример 2: Учетная запись | AutomationId:  | Координаты: (L58, T37, R163, B56)
+   Пример 3: Управление | AutomationId:  | Координаты: (L178, T37, R260, B56)
+   ... и еще 305 элементов
+
+7. ToolBar (найдено: 1)
+   Пример 1: N/A | AutomationId: toolBar1 | Координаты: (L0, T64, R1920, B118)
+
+8. Thumb (найдено: 11)
+   Пример 1: N/A | AutomationId: ToolBarThumb | Координаты: (L0, T64, R13, B116)
+   Пример 2: N/A | AutomationId: gridSplitter1 | Координаты: (L442, T118, R448, B983)
+   Пример 3: N/A | AutomationId: PART_HeaderGripper | Координаты: (L477, T120, R499, B145)
+   ... и еще 8 элементов
+
+9. Separator (найдено: 5)
+   Пример 1: N/A | AutomationId:  | Координаты: (L0, T0, R0, B0)
+   Пример 2: N/A | AutomationId:  | Координаты: (L0, T0, R0, B0)
+   Пример 3: N/A | AutomationId:  | Координаты: (L110, T69, R111, B111)
+   ... и еще 2 элементов
+
+10. Image (найдено: 140)
+   Пример 1: N/A | AutomationId:  | Координаты: (L16, T70, R56, B110)
+   Пример 2: N/A | AutomationId:  | Координаты: (L64, T70, R104, B110)
+   Пример 3: N/A | AutomationId:  | Координаты: (L118, T70, R158, B110)
+   ... и еще 137 элементов
+
+11. Tree (найдено: 1)
+   Пример 1: N/A | AutomationId: groupsTreeView | Координаты: (L0, T118, R442, B983)
+
+12. TreeItem (найдено: 110)
+   Пример 1: AbakConfigurator.CParamsGroup | AutomationId:  | Координаты: (L3, T120, R418, B1143)
+   Пример 2: AbakConfigurator.CParamsGroup | AutomationId:  | Координаты: (L26, T145, R418, B420)
+   Пример 3: AbakConfigurator.CParamsGroup | AutomationId:  | Координаты: (L50, T170, R418, B195)
+   ... и еще 107 элементов
+
+13. DataGrid (найдено: 2)
+   Пример 1: N/A | AutomationId: tagsListView | Координаты: (L448, T118, R1920, B983)
+   Пример 2: N/A | AutomationId: modulesTagsListView | Координаты: (L448, T130, R1920, B923)
+
+14. Header (найдено: 2)
+   Пример 1: N/A | AutomationId:  | Координаты: (L453, T120, R1915, B145)
+   Пример 2: N/A | AutomationId:  | Координаты: (L453, T133, R1915, B158)
+
+15. HeaderItem (найдено: 9)
+   Пример 1: N/A | AutomationId:  | Координаты: (L453, T120, R488, B145)
+   Пример 2: Имя параметра | AutomationId:  | Координаты: (L488, T120, R670, B145)
+   Пример 3: Значение | AutomationId:  | Координаты: (L670, T120, R935, B145)
+   ... и еще 6 элементов
+
+16. Group (найдено: 4)
+   Пример 1: Дата и время | AutomationId:  | Координаты: (L450, T145, R1960, B423)
+   Пример 2: Разрешить сердцебиение | AutomationId:  | Координаты: (L464, T164, R728, B356)
+   Пример 3: Потребитель | AutomationId:  | Координаты: (L472, T217, R720, B349)
+   ... и еще 1 элементов
+
+17. DataItem (найдено: 8)
+   Пример 1: AbakConfigurator.CParam | AutomationId:  | Координаты: (L450, T171, R1960, B203)
+   Пример 2: AbakConfigurator.CParam | AutomationId:  | Координаты: (L450, T203, R1960, B234)
+   Пример 3: AbakConfigurator.CParam | AutomationId:  | Координаты: (L450, T234, R1960, B265)
+   ... и еще 5 элементов
+
+18. Custom (найдено: 24)
+   Пример 1: N/A | AutomationId:  | Координаты: (L460, T177, R480, B197)
+   Пример 2: N/A | AutomationId:  | Координаты: (L670, T174, R935, B200)
+   Пример 3: N/A | AutomationId:  | Координаты: (L670, T174, R935, B200)
+   ... и еще 21 элементов
+
+19. Edit (найдено: 12)
+   Пример 1: N/A | AutomationId: textBox | Координаты: (L671, T175, R882, B200)
+   Пример 2: N/A | AutomationId: textBox | Координаты: (L671, T206, R882, B231)
+   Пример 3: N/A | AutomationId: textBox | Координаты: (L671, T237, R882, B262)
+   ... и еще 9 элементов
+
+20. ScrollBar (найдено: 24)
+   Пример 1: N/A | AutomationId: VerticalScrollBar | Координаты: (L0, T0, R0, B0)
+   Пример 2: N/A | AutomationId: HorizontalScrollBar | Координаты: (L0, T0, R0, B0)
+   Пример 3: N/A | AutomationId: VerticalScrollBar | Координаты: (L0, T0, R0, B0)
+   ... и еще 21 элементов
+
+21. ComboBox (найдено: 8)
+   Пример 1: N/A | AutomationId: comboBox | Координаты: (L671, T175, R882, B200)
+   Пример 2: N/A | AutomationId: comboBox | Координаты: (L671, T206, R882, B231)
+   Пример 3: N/A | AutomationId: comboBox | Координаты: (L671, T237, R882, B262)
+   ... и еще 5 элементов
+
+22. CheckBox (найдено: 10)
+   Пример 1: N/A | AutomationId: toggleButton | Координаты: (L671, T176, R721, B198)
+   Пример 2: N/A | AutomationId: toggleButton | Координаты: (L671, T208, R721, B229)
+   Пример 3: N/A | AutomationId: toggleButton | Координаты: (L671, T239, R721, B260)
+   ... и еще 7 элементов
+
+23. Tab (найдено: 1)
+   Пример 1: N/A | AutomationId: modulesInfoTabControl | Координаты: (L448, T118, R1920, B983)
+
+24. TabItem (найдено: 2)
+   Пример 1: Общие настройки для всех модулей | AutomationId: generalModulesSettings | Координаты: (L448, T118, R718, B148)
+   Пример 2: Обновление модулей | AutomationId: ModulesUpdateGrid | Координаты: (L715, T120, R880, B148)
+
+25. StatusBar (найдено: 1)
+   Пример 1: N/A | AutomationId: PlcStatusBar | Координаты: (L0, T983, R1920, B1030)
+
